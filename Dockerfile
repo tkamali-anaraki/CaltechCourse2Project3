@@ -1,6 +1,5 @@
 FROM ubuntu
-RUN apt-get update && apt-get install -y httpd
-COPY httpd.conf /usr/local/apache2/conf/httpd.conf
+RUN apt-get update && apt-get install -y nginx
+COPY index.html /var/www/html/index.html
 EXPOSE 80
-ENTRYPOINT ["/usr/sbin/apache2"]
-
+ENTRYPOINT nginx -g 'daemon off;'
