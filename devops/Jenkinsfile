@@ -9,7 +9,7 @@ pipeline {
         stage ("Build") {
           steps {
             sh '''
-              echo "Build Stage"
+              echo "Pull and Build Stage"
             '''
           }
         }
@@ -24,6 +24,13 @@ pipeline {
     }
     stage ("CD") {
       stages {
+        stage ("Pull product image") {
+          steps {
+            sh '''
+              echo "Pull product image stage"
+            '''
+          }
+        }
         stage ("Deploy") {
           steps {
             sh '''
