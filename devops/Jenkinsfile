@@ -21,7 +21,7 @@ pipeline {
     }
     stage ("CD") {
       stages {
-        stage "Deploy" {
+        stage ("Deploy") {
           steps {
             sh '''
               echo "Deploy Stage"
