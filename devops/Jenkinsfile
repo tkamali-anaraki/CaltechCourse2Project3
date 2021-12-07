@@ -13,7 +13,7 @@ pipeline {
         stage ("Push") {
           steps {
             sh '''
-              echo "Build Stage"
+              echo "Push Stage"
             '''
           }
         }
