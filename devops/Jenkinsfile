@@ -8,9 +8,13 @@ pipeline {
       stages {
         stage ("Build") {
           steps {
-            sh '''
-              echo "Pull and Build Stage"
-            '''
+            withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'password-env', usernameVariable: 'username-env')]) {
+              sh '''
+                echo "$username-env"
+                echo "$password-env"
+                echo "Pull and Build Stage"
+              '''
+            }
           }
         }
         stage ("Push") {
