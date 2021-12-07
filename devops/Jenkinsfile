@@ -1,37 +1,31 @@
 pipeline {
-  agent {
-    any
-  }
+  agent any
   stages {
     stage ("CI") {
-      steps {
-        stages {
-          stage ("Build") {
-            steps {
-              sh '''
-                echo "Build Stage"
-              '''
-            }
+      stages {
+        stage ("Build") {
+          steps {
+            sh '''
+              echo "Build Stage"
+            '''
           }
-          stage ("Push") {
-            steps {
-              sh '''
-                echo "Build Stage"
-              '''
-            }
+        }
+        stage ("Push") {
+          steps {
+            sh '''
+              echo "Build Stage"
+            '''
           }
         }
       }
     }
     stage ("CD") {
-      steps {
-        stages {
-          stage "Deploy" {
-            steps {
-              sh '''
-                echo "Deploy Stage"
-              '''
-            }
+      stages {
+        stage "Deploy" {
+          steps {
+            sh '''
+              echo "Deploy Stage"
+            '''
           }
         }
       }
