@@ -43,6 +43,7 @@ pipeline {
               docker pull ${username}/nginx-jenkins
               docker logout
             '''
+            }
           }
         }
         stage ("Deploy") {
