@@ -10,8 +10,8 @@ pipeline {
           steps {
             withCredentials([usernamePassword(credentialsId: 'Dockerhub-System', passwordVariable: 'password-env', usernameVariable: 'username-env')]) {
               sh '''
-                echo "$username-env"
-                echo "$password-env"
+                echo "${username-env}"
+                echo "${password-env}"
                 echo "Pull and Build Stage"
                 docker build -t nginx-jenkins -f Dockerfile .
               '''
