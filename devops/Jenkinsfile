@@ -35,8 +35,12 @@ pipeline {
       stages {
         stage ("Pull product image") {
           steps {
+            withCredentials([usernamePassword(credentialsId: 'Dockerhub-Caltech', passwordVariable: 'password', usernameVariable: 'username')]) {
             sh '''
               echo "Pull product image stage"
+              docker login -u ${username} -p ${password}
+              docker pull ${username}/nginx-jenkins
+              docker logout
             '''
           }
         }
