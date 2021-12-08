@@ -22,7 +22,7 @@ pipeline {
           steps {
             sh '''
               echo "Push Stage"
-              docker login -u ${username-env} -p ${password-env}
+              docker login -u tinakamali -p ${password-env}
             '''
           }
         }
