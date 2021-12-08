@@ -25,6 +25,7 @@ pipeline {
                 echo "Push Stage"
                 docker login -u ${username} -p ${password}
                 docker push ${username}/nginx-jenkins
+                docker logout
               '''
             }
           }
