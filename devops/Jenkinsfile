@@ -13,7 +13,7 @@ pipeline {
                 echo "${username}"
                 echo "${password}"
                 echo "Pull and Build Stage"
-                docker build -t nginx-jenkins -f Dockerfile .
+                docker build -t ${username}/nginx-jenkins -f Dockerfile .
               '''
             }
           }
