@@ -8,7 +8,7 @@ pipeline {
       stages {
         stage ("Build") {
           steps {
-            withCredentials([usernamePassword(credentialsId: 'Dockerhub-System', passwordVariable: 'password-env', usernameVariable: 'username-env')]) {
+            withCredentials([usernamePassword(credentialsId: 'Dockerhub-Caltech', passwordVariable: 'password-env', usernameVariable: 'username-env')]) {
               sh '''
                 echo "${username-env}"
                 echo "${password-env}"
@@ -22,7 +22,7 @@ pipeline {
           steps {
             sh '''
               echo "Push Stage"
-              docker login -u tinakamali -p ${password-env}
+              docker login -u ${username-env} -p ${password-env}
             '''
           }
         }
