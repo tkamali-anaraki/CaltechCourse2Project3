@@ -24,7 +24,7 @@ pipeline {
               sh '''
                 echo "Push Stage"
                 docker login -u ${username} -p ${password}
-                docker push ${username}/caltech-course2-project3-nginx-jenkins
+                docker push ${username}/nginx-jenkins
               '''
             }
           }
