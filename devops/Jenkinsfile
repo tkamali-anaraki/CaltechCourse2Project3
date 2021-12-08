@@ -8,10 +8,10 @@ pipeline {
       stages {
         stage ("Build") {
           steps {
-            withCredentials([usernamePassword(credentialsId: 'Dockerhub-Caltech', passwordVariable: 'password-env', usernameVariable: 'username-env')]) {
+            withCredentials([usernamePassword(credentialsId: 'Dockerhub-Caltech', passwordVariable: 'passwordvar', usernameVariable: 'usernamevar')]) {
               sh '''
-                echo "${username-env}"
-                echo "${password-env}"
+                echo "${usernamevar}"
+                echo "${passwordvar}"
                 echo "Pull and Build Stage"
                 docker build -t nginx-jenkins -f Dockerfile .
               '''
@@ -22,7 +22,7 @@ pipeline {
           steps {
             sh '''
               echo "Push Stage"
-              docker login -u ${username-env} -p ${password-env}
+              docker login -u ${usernamevar} -p ${passwordvar}
             '''
           }
         }
