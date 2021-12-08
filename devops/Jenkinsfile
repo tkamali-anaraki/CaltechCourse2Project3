@@ -48,9 +48,13 @@ pipeline {
         }
         stage ("Deploy") {
           steps {
+            withCredentials([usernamePassword(credentialsId: 'Dockerhub-Caltech', passwordVariable: 'password', usernameVariable: 'username')]) {
             sh '''
               echo "Deploy Stage"
+              docker pull ${username}/nginx-jenkins
+              docker run --rm -d -p 8080:80 --name nginxcontainercaltech ${username}/nginx-jenkins
             '''
+            }
           }
         }
       }
