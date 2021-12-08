@@ -52,7 +52,7 @@ pipeline {
             sh '''
               echo "Deploy Stage"
               docker pull ${username}/nginx-jenkins
-              docker run --rm -d -p 8080:80 --name nginxcontainercaltech ${username}/nginx-jenkins
+              docker run --rm -d -p 8081:80 --name nginxcontainercaltech ${username}/nginx-jenkins
             '''
             }
           }
