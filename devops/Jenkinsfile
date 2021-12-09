@@ -37,23 +37,29 @@ pipeline {
         stage ("Pull product image") {
           steps {
             withCredentials([usernamePassword(credentialsId: 'Dockerhub-Caltech', passwordVariable: 'password', usernameVariable: 'username')]) {
-            sh '''
-              echo "Pull product image stage"
-              docker login -u ${username} -p ${password}
-              docker pull ${username}/nginx-jenkins
-              docker logout
-            '''
+              sh '''
+                echo "Pull product image stage"
+                docker login -u ${username} -p ${password}
+                docker pull ${username}/nginx-jenkins
+                docker logout
+              '''
             }
           }
         }
         stage ("Deploy") {
           steps {
             withCredentials([usernamePassword(credentialsId: 'Dockerhub-Caltech', passwordVariable: 'password', usernameVariable: 'username')]) {
-            sh '''
-              echo "Deploy Stage"
-              docker pull ${username}/nginx-jenkins
-              docker run --rm -d -p 8081:80 --name nginxcontainercaltech ${username}/nginx-jenkins
-            '''
+              sh '''
+                echo "Deploy Stage"
+                docker pull ${username}/nginx-jenkins
+
+                if [ ! docker ps | grep "nginxcontainercaltech" ]; then
+                  docker run --rm -d -p 8081:80 --name nginxcontainercaltech ${username}/nginx-jenkins
+                fi
+
+                #[ ! docker ps | grep "nginxcontainercaltech" ] && docker run --rm -d -p 8081:80 --name nginxcontainercaltech ${username}/nginx-jenkins
+                #if [ ! echo $? == 0 ]; then this; fi
+              '''
             }
           }
         }
